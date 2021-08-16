@@ -2,7 +2,6 @@ package stepNum4Pair;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 
 /**
  *  可以用增删改进行修改s1字符串使她和s2字符串一样  计算最小的需要的步数
@@ -16,11 +15,13 @@ public class stepNum4pair {
         if(index1 == -1) return index2+1;
         if(index2 == -1) return index1+1;
         //取增删改一次以后各自接下来最小的改动步数
-        if(s1[index1] == s2[index2]) return dp(s1,s2, index1-1,index2-1,mem);
+        if(mem[index1][index2] != 0){
+            return mem[index1][index2];
+        }
+        if(s1[index1] == s2[index2]) {
+            mem[index1][index2] = dp(s1, s2, index1-1, index2-1, mem);
+        }
         else {
-            if(mem[index1][index2] != -666){
-                return mem[index1][index2];
-            }else {
                 //如果是增加
                 int increase = dp(s1, s2, index1, index2 - 1,mem) + 1;
                 //如果是删除
@@ -28,24 +29,15 @@ public class stepNum4pair {
                 //如果是更改
                 int update = dp(s1, s2, index1 - 1, index2 - 1,mem) + 1;
                 mem[index1][index2] = Math.min(increase,Math.min(delete,update));
-                return mem[index1][index2];
-            }
         }
+        return mem[index1][index2];
     }
 
     @Test
     public void test() {
-        String s1 = "abc";
-        char[] chars = s1.toCharArray();
-        int index = chars.length-1;
         int[] arr1= {1,3,3};
         int[] arr2= {3,2,3};
-        int[][] mem = new int[100][100];
-        for (int[] ints : mem) {
-            for (int anInt : ints) {
-                anInt = -666;
-            }
-        }
+        int[][] mem = new int[5][5];
         int dp = dp(arr1,arr2,2,2,mem);
         System.out.println(dp);
     }
