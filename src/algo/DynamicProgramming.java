@@ -17,7 +17,7 @@ package algo;
 
 //o(1) * o(n)  = o(n)  空间换时间复杂度  每次递归复杂度o(1) 一共递归n次 所以是o(n)
 
-public class dynamicProgramming {
+public class DynamicProgramming {
 
 
 }

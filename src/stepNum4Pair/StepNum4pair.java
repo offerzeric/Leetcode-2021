@@ -9,7 +9,7 @@ import org.junit.Test;
  *  函数dp即直接得到字符串转换需要的步数
  * @author ericzhang 2021/08/15 10:48 上午
  */
-public class stepNum4pair {
+public class StepNum4pair {
 
     public int dp(int[] s1, int[] s2, int index1, int index2, int[][] mem){
         if(index1 == -1) return index2+1;

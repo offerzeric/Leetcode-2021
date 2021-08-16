@@ -6,7 +6,7 @@ package easy;
  *
  * @author ericzhang 2021/08/13 11:21 上午
  */
-public class ImpleStr_28 {
+public class LmpleStr_28 {
     public int strStr(String haystack, String needle) {
             if(needle.isEmpty()){
                     return 0;

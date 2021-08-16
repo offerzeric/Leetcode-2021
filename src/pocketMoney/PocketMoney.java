@@ -10,7 +10,7 @@ import org.junit.Test;
  * 我根本不care dp是怎么递归出来的  我定义的函数的作用就是把要求的最后结果的算法定义出来
  * @author ericzhang 2021/08/15 12:37 上午
  */
-public class pocketMoney {
+public class PocketMoney {
 
     //求当前amount下和coins下的最小数量
     public int dp(int[] coins, int amount){
