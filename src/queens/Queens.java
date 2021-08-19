@@ -75,6 +75,4 @@ public class Queens {
             System.out.println(Arrays.deepToString(res.get(i)));
         }
     }
-
-
 }
