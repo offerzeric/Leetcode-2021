@@ -4,6 +4,7 @@ import org.junit.Test;
 
 /**
  * 二维数组从第一行往下面落下，计算落到任意一点的最小值和
+ * DP
  *
  * @author ericzhang 2021/08/16 9:16 上午
  */
