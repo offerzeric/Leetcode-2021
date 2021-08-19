@@ -13,8 +13,8 @@ import java.util.*;
 public class NumLock {
 
     String start = "0000";
-    String target = "0009";
-    String[] deadends = {"8888"};
+    String target = "0008";
+    String[] deadends = {"0103"};
     Set<String> visited = new HashSet<>();
     int step = 0;
 
@@ -64,12 +64,9 @@ public class NumLock {
         if(chars[i1] == '0'){
             chars[i1] = '9';
         }else {
-            Integer temp = (int) chars[i1];
-            temp -= 1;
-            String s = temp.toString();
-            chars[i1] = s.toCharArray()[0];
+            chars[i1] -= 1;
         }
-        return new String(poll);
+        return new String(chars);
     }
 
     private String addOne(String poll, int i1) {
@@ -77,12 +74,10 @@ public class NumLock {
         if(chars[i1] == '9'){
             chars[i1] = '0';
         }else {
-            Integer temp = (int) chars[i1];
-            temp += 1;
-            String s = temp.toString();
-            chars[i1] = s.toCharArray()[0];
+            //直接字符+1可以得到下一个字符型的数据
+           chars[i1] += 1;
         }
-        return new String(poll);
+        return new String(chars);
     }
 
     private boolean check4Dead(String poll) {
