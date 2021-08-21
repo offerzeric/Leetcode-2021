@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  * 自动锁   4个1-10  翻到deasdends 就死锁   翻到target解锁   最少的转动次数   如果解锁不了返回-1
- * bfs
+ * bfs 找到的路径一定是最短的   把问题抽象为图以后 求图的start 到 end的最小距离
  *
  * @author ericzhang 2021/08/19 9:27 上午
  */
