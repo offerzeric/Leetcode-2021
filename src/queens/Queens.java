@@ -40,6 +40,8 @@ public class Queens {
         }
     }
 
+
+
     private boolean check(char[][] array, int row, int col) {
         //因为是往下面一个个摆放  所以摆放当前的时候不需要考虑下面的限制部分
         //同一列
