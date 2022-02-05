@@ -24,6 +24,8 @@ public class KClosestInSortedArray {
          int mid = left + (right - left) / 2;
          if(array[mid] == target){
             closetIndex = mid;
+            left = mid;
+            right = mid;
          }else if(array[mid] < target){
             left = mid;
          }else{
@@ -53,6 +55,7 @@ public class KClosestInSortedArray {
                       plus++;
                    }
                 }
+                time++;
             }
             if(minus-1 >= 0){
                if(plus+1 <array.length) {
@@ -69,9 +72,8 @@ public class KClosestInSortedArray {
                      minus--;
                   }
                }
+               time++;
             }
-
-            time++;
          }
       }
       return res;
