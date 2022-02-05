@@ -85,7 +85,6 @@ public class KClosestInSortedArray {
       int m = 5;
       int[] ews = kClosest(ints,tar,m);
       System.out.println(ews);
-
    }
 
 }
