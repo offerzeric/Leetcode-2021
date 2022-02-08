@@ -24,6 +24,7 @@ public class QuickSort {
       return array;
    }
    private void quickSortPart(int[] array, int left, int right){
+      //base case 因为下面的sub recursive调用时跳过咯lastIndex所以有可能直接就left>right了
       if(left >= right){
          return;
       }

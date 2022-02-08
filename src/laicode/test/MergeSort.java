@@ -19,6 +19,7 @@ public class MergeSort {
       return mergeSortPart(array,left,right);
    }
    private int[] mergeSortPart(int[] array,int left,int right){
+      //base case 因为下面的sub recursive调用时没跳过任何元素所以只有可能=
       if(left == right){
          return new int[] {array[left]};
       }
