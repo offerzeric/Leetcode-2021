@@ -1,5 +1,6 @@
 package laicode.test;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -9,44 +10,43 @@ import java.util.LinkedList;
  * @author ericzhang 2022/02/02 18:17
  */
 public class StackWithmin {
-   private Deque<Integer> stack;
-   private Deque<Integer> minStack;
-   public StackWithmin() {
-      // write your solution here
-      stack = new LinkedList<Integer>();
-      minStack = new LinkedList<Integer>();
-   }
+   private Deque<Integer> value = new ArrayDeque();
+   private Deque<Integer>  minSize = new ArrayDeque();
+   private Deque<Integer>  minVal = new ArrayDeque();
 
    public int pop() {
-      if(stack.isEmpty()){
+      if(value.isEmpty()){
          return -1;
       }
-      Integer result = stack.pollFirst();
-      if(minStack.peekFirst().equals(result)){
-         minStack.pollFirst();
+      int ele = value.pollFirst();
+      if(minVal.peekFirst() == ele){
+         if(minSize.peekFirst() == value.size()+1){
+            minVal.pollFirst();
+            minSize.pollFirst();
+         }
       }
-      return result;
+      return ele;
    }
 
    public void push(int element) {
-      stack.offerFirst(element);
-      if(minStack.isEmpty()||element <= minStack.peekFirst()){
-         minStack.offerFirst(element);
+      value.offerFirst(element);
+      if(minVal.isEmpty() || element < minVal.peekFirst()){
+         minSize.offerFirst(value.size());
+         minVal.offerFirst(element);
       }
-
    }
 
    public int top() {
-      if(stack.isEmpty()){
+      if(value.size() == 0){
          return -1;
       }
-      return stack.peekFirst();
+      return value.peekFirst();
    }
 
    public int min() {
-      if(minStack.isEmpty()){
+      if(minVal.isEmpty()){
          return -1;
       }
-      return minStack.peekFirst();
+      return minVal.peekFirst();
    }
 }
