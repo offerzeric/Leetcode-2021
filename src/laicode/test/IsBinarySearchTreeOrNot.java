@@ -8,33 +8,28 @@ import java.util.ArrayList;
  * @author ericzhang 2022/02/20 01:06
  */
 public class IsBinarySearchTreeOrNot {
-   public static boolean isBST(TreeNode root) {
+   int pre = Integer.MIN_VALUE;
+   public static  boolean isBST(TreeNode root) {
+      int pre = Integer.MIN_VALUE;
       // Write your solution here
       //base case null is right
       // sub pro: root is means all sub is
       // recursion rule: every sub is all is
-//      if(root == null){
-//         return true;
-//      }
-//      if(root.left != null && root.left.key >= root.key){
-//         return false;
-//      }
-//      if(root.right != null && root.right.key <= root.key){
-//         return false;
-//      }
-//      return isBST(root.left) && isBST(root.right);
-      return isBST(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
-   }
-   private static boolean isBST(TreeNode root, int min, int max){
+      // #1 in order travel then store check will there be a item is smaller than latter
+      // #2 pre order recursion check everytime is there sth wrong
+      // #1
       if(root == null){
-         return  true;
+         return true;
       }
-      if(root.key<=min || root.key>=max){
-         return  false;
+      boolean left = isBST(root.left);
+      if(pre >= root.key){
+         return false;
       }
-      return isBST(root.left,min,root.key)
-            &&isBST(root.right,root.key,max);
+      pre = root.key;
+      boolean right = isBST(root.right);
+      return left&&right;
    }
+
    public static void main(String[] args) {
 //      int[] a = {5,4,8,2,6};
 //      TreeNode trans = ArrayToTree.trans(a);
