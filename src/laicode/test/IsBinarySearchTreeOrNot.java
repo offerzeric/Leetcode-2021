@@ -28,6 +28,25 @@ public class IsBinarySearchTreeOrNot {
       pre = root.key;
       boolean right = isBST(root.right);
       return left&&right;
+
+//  # 2
+//      public boolean isBST(TreeNode root) {
+//         int max = Integer.MAX_VALUE;
+//         int min = Integer.MIN_VALUE;
+//         if(root == null){
+//            return true;
+//         }
+//         return isBST(root,min,max);
+//      }
+//      private boolean isBST(TreeNode root, int min, int max){
+//         if(root == null){
+//            return true;
+//         }
+//         if(root.key <= min || root.key >= max){
+//            return false;
+//         }
+//         return isBST(root.left,min,root.key) && isBST(root.right,root.key,max);
+//      }
    }
 
    public static void main(String[] args) {
