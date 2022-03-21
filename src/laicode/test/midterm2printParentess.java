@@ -17,7 +17,7 @@ public class midterm2printParentess {
       print(sb,n,list,countL, countR);
    }
    private void print(StringBuilder sb, int n, List<String> list, int countL, int countR){
-      if(sb.length() == 2*n + 4){
+      if(sb.length() == 2*n){
          sb.append("}");
          printBlock(sb.toString().toCharArray());
          sb.deleteCharAt(sb.length() - 1);
