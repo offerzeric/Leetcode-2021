@@ -20,7 +20,7 @@ public class MinimumCutsForPalindromes {
          return 0;
       }
       int[] m = new int[in.length + 1];
-      Arrays.fill(m,Integer.MIN_VALUE);
+      Arrays.fill(m,Integer.MAX_VALUE);
       m[0] = 0;
       m[1] = 0;
       for(int i = 2; i <= in.length; i++){
@@ -31,7 +31,7 @@ public class MinimumCutsForPalindromes {
          }else{
             for(int j = 1; j < i; j++){
                String temp = new String(in,j,i - j);
-               if(m[j] >= 0 && check(temp)){
+               if(m[j] >= 0 && m[j] < Integer.MAX_VALUE && check(temp)){
                   int res = m[j] + 1;
                   if(res < m[i]){
                      m[i] = res;
