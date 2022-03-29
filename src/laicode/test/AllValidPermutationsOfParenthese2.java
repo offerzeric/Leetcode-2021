@@ -11,7 +11,7 @@ import java.util.List;
  * @author ericzhang 2022/03/06 17:02
  */
 public class AllValidPermutationsOfParenthese2 {
-   public List<String> validParentheses(int l, int m, int n) {
+   public static List<String> validParentheses(int l, int m, int n) {
       // Write your solution here
       // ( cannot exist more than the number of i
       // < cannot exist more than the number of m
@@ -31,7 +31,7 @@ public class AllValidPermutationsOfParenthese2 {
    }
 
    //return in this situation the all permutations
-   private void validParentheses(int l, int m, int n, int countSmal, int countMidl, int countBigl, StringBuilder sb, List<String> list, Deque<String> stack) {
+   private static void validParentheses(int l, int m, int n, int countSmal, int countMidl, int countBigl, StringBuilder sb, List<String> list, Deque<String> stack) {
       if (sb.length() == 2 * l + 2 * n + 2 * m) {
          list.add(sb.toString());
          return;
@@ -79,6 +79,13 @@ public class AllValidPermutationsOfParenthese2 {
          sb.deleteCharAt(sb.length() - 1);
          stack.offerLast("{");
       }
+   }
+
+   public static void main(String[] args) {
+      int m = 3;
+      int b = 2;
+      int c = 4;
+      validParentheses(3,2,4);
    }
 }
 
