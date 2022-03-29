@@ -1,6 +1,8 @@
 package laicode.test;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -9,39 +11,74 @@ import java.util.List;
  * @author ericzhang 2022/03/06 17:02
  */
 public class AllValidPermutationsOfParenthese2 {
-   public List<String> validParentheses(int n) {
+   public List<String> validParentheses(int l, int m, int n) {
       // Write your solution here
-      List<String> list = new ArrayList<>();
-      if(n == 1){
-         list.add("()");
-         return list;
-      }
-      //必须有一个左括号才能有右括号
-      //层数等于2n时结束
-      int level = 0;
-      int countLeft = 0;
-      int countRight = 0;
+      // ( cannot exist more than the number of i
+      // < cannot exist more than the number of m
+      // { cannot exist more than number of n
+      // first ( then )
+      //the last level is 2I + 2m + 2n we add one of three then return
+      //遇到left put in stack
+      // meet with right check stack:1.stack empty cannot add ) 2.stack has ele (1) stack is pair ele add (2) stack is not pair not add
+      int countSmal = 0;
+      int countMidl = 0;
+      int countBigl = 0;
+      List<String> list = new ArrayList<String>();
       StringBuilder sb = new StringBuilder();
-      list = validParentheses(n,list,level,sb,countLeft,countRight);
+      Deque<String> stack = new ArrayDeque<>();
+      validParentheses(l, m, n, countSmal, countMidl, countBigl, sb, list, stack);
       return list;
    }
-   private List<String> validParentheses(int n, List<String> list,int level,StringBuilder sb,int countLeft, int countRight){
-      if(level == 2*n){
+
+   //return in this situation the all permutations
+   private void validParentheses(int l, int m, int n, int countSmal, int countMidl, int countBigl, StringBuilder sb, List<String> list, Deque<String> stack) {
+      if (sb.length() == 2 * l + 2 * n + 2 * m) {
          list.add(sb.toString());
-         return list;
+         return;
       }
-      if(countLeft < n){
+      if (countSmal < l) {
+         stack.offerLast("(");
          sb.append("(");
-         list = validParentheses(n,list,level+1,sb,countLeft+1,countRight);
+         validParentheses(l, m, n, countSmal + 1, countMidl, countBigl, sb, list, stack);
+         stack.pollLast();
          sb.deleteCharAt(sb.length() - 1);
       }
-      if(countLeft > countRight){
-         sb.append(")");
-         list = validParentheses(n,list,level+1,sb,countLeft,countRight+1);
+      if (countMidl < m) {
+         stack.offerLast("<");
+         sb.append("<");
+         validParentheses(l, m, n, countSmal, countMidl + 1, countBigl, sb, list, stack);
+         stack.pollLast();
+         sb.deleteCharAt(sb.length() - 1);
+      }
+      if (countBigl < n) {
+         stack.offerLast("{");
+         sb.append("{");
+         validParentheses(l, m, n, countSmal, countMidl, countBigl + 1, sb, list, stack);
+         stack.pollLast();
          sb.deleteCharAt(sb.length() - 1);
       }
 
-      return list;
+      if (!stack.isEmpty() && stack.peekLast() == "(") {
+         stack.pollLast();
+         sb.append(")");
+         validParentheses(l, m, n, countSmal, countMidl, countBigl, sb, list, stack);
+         sb.deleteCharAt(sb.length() - 1);
+         stack.offerLast("(");
+      }
+      if (!stack.isEmpty() && stack.peekLast() == "<") {
+         stack.pollLast();
+         sb.append(">");
+         validParentheses(l, m, n, countSmal, countMidl, countBigl, sb, list, stack);
+         sb.deleteCharAt(sb.length() - 1);
+         stack.offerLast("<");
+      }
+      if (!stack.isEmpty() && stack.peekLast() == "{") {
+         stack.pollLast();
+         sb.append("}");
+         validParentheses(l, m, n, countSmal, countMidl, countBigl, sb, list, stack);
+         sb.deleteCharAt(sb.length() - 1);
+         stack.offerLast("{");
+      }
    }
 }
 
